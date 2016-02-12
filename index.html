@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>청우회</title>
+<!-- Application my style sheet file -->
+	<link rel="stylesheet" type="text/css" href="./css/mystyle.css"/>
+	
+<!-- jQuery and jQtouch script file -->
+	<style type="text/css" media="screen">@import "./jqtouch/jqtouch.css";</style>
+	<style type="text/css" media="screen">@import "./themes/apple/theme.css";</style>
+	<script src="./jqtouch/jquery-1.4.2.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./jqtouch/jqtouch.js" type="application/x-javascript" charset="utf-8"></script>
+	
+<!-- phonegap script file -->
+	<script src="./phonegap/phonegap.js" type="application/x-javascript" charset="utf-8"></script>
+
+<!-- Application Base script files -->
+	<script type="text/javascript" src="./js/db/DBHandler.js"></script>
+	<script type="text/javascript" src="./js/global/Constants.js"></script>
+	<script type="text/javascript" src="./js/global/Global.js"></script>
+	<script type="text/javascript" src="./js/global/ValueObject.js"></script>
+
+<!-- Application script files -->	
+	<script type="text/javascript" src="./js/manager/ManagerFacade.js"></script>
+	<script type="text/javascript" src="./js/manager/ManagerMediator.js"></script>
+	<script type="text/javascript" src="./js/manager/ManagerProxy.js"></script>
+	<script type="text/javascript" src="./js/manager/ManagerCommand.js"></script>
+	
+	<script type="text/javascript" src="./js/main/MainFacade.js"></script>
+	<script type="text/javascript" src="./js/main/MainMediator.js"></script>
+	
+	<script type="text/javascript" src="./js/list/ListFacade.js"></script>
+	<script type="text/javascript" src="./js/list/ListMediator.js"></script>
+	<script type="text/javascript" src="./js/list/ListProxy.js"></script>
+	<script type="text/javascript" src="./js/list/ListCommand.js"></script>
+	
+	<script type="text/javascript" src="./js/rule/RuleFacade.js"></script>
+	<script type="text/javascript" src="./js/rule/RuleMediator.js"></script>
+	
+	<script type="text/javascript" src="./js/write/WriteFacade.js"></script>
+	<script type="text/javascript" src="./js/write/WriteMediator.js"></script>
+	<script type="text/javascript" src="./js/write/WriteProxy.js"></script>
+	<script type="text/javascript" src="./js/write/WriteCommand.js"></script>
+	
+	<script type="text/javascript" charset="utf-8">
+		var jQT = new $.jQTouch({
+		  icon:'jqtouch.png'		  
+		});
+		//var managerFacade = new sixstreetApp.ManagerFacade();
+		
+		var mainFacade = new sixstreetApp.MainFacade();
+		var listFacade = new sixstreetApp.ListFacade();
+		var ruleFacade = new sixstreetApp.RuleFacade();
+		var writeFacade = new sixstreetApp.WriteFacade();
+		var managerFacade = new sixstreetApp.ManagerFacade();
+		function clickTabbarButton(buttonName){
+			PhoneGap.exec("MHRCommand.clickTabbarButton",buttonName,{});
+		};
+		function onBodyLoad() {			
+			listFacade.getFriendsListToLocalDB();			
+		};
+		
+		function onDeviceReady(){
+			if (userIsGuest()){
+				writeFacade.showWritePage();
+			}
+			else{
+				createToolBar();
+				setTimeout(function(){
+					clickTabbarButton(Constants.TabbarItems.CMD_MAIN);
+				}, 1000);
+			}				
+		};
+		function createToolBar(){
+			PhoneGap.exec("MHRCommand.createToolbar");
+			PhoneGap.exec("MHRCommand.createToolbarButton",Constants.TabbarItems.CMD_CODE,"loadFile","main.html","60","alarm.png","alarm.png","writeFacade.showWritePage();");
+			PhoneGap.exec("MHRCommand.createToolbarButton",Constants.TabbarItems.CMD_MAIN,"loadFile","main.html","70","people.png","people.png","mainFacade.showMainPage();");
+			PhoneGap.exec("MHRCommand.createToolbarButton",Constants.TabbarItems.CMD_LIST,"loadFile","main.html","70","voice.png","voice.png","listFacade.showListPage();");
+			PhoneGap.exec("MHRCommand.createToolbarButton",Constants.TabbarItems.CMD_RULE,"loadFile","main.html","70","settings.png","settings.png","ruleFacade.showRulePage();");
+			PhoneGap.exec("MHRCommand.showToolbar");
+		};
+		function clickedTabbarButton() {
+		};
+		
+	</script>
+</head>
+<body onload="onBodyLoad()" >
+<div id="jqt">
+<div id="test">	
+</div>
+<div id="listview">
+	<div class="toolbar">
+		<h1>청우회 명부</h1>		
+	</div>	
+	
+	<div id="listview-wrapper">		
+	
+	</div>	
+</div>
+
+<div id="mainview">
+	<div class="toolbar">
+		<h1>청우회 소식</h1>		
+	</div>	
+	
+	<div id="mainview-wrapper">		
+	
+	</div>	
+</div>
+
+
+
+<div id="ruleview">
+	<div class="toolbar">
+		<h1>청우회 회칙</h1>		
+	</div>	
+	
+	<div id="ruleview-wrapper">		
+	
+	</div>	
+</div>
+
+<div id="writeview">
+	<div class="toolbar">
+		<h1>코드 입력</h1>
+		<a href="http://uksmart.dothome.co.kr/sixstreet.html" class="button">About</a>
+	</div>		
+	<div id="writeview-wrapper">		
+	</div>	
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+p.error_message{
+  color:red;
+}
+
+
+.list_main{
+  margin-bottom: 2px;
+  background-color : #fff;
+}
+.list_avator{
+  float : left;  
+}
+.list_avator_img{
+  height : 70px; 
+  margin-left: 5px;
+  margin-top: 3px;
+  border: 2px solid #888;
+}
+.list_menu{
+  height : 80px;  
+  margin-left : 110px;   
+}
+.list_user_detail{
+  padding-top:5px;
+}
+.list_user_name{  
+  font-size : 28px;
+}
+list_user_point{
+  margin-left:5px;
+}
+.list_function{
+  margin-top:10px;
+}
+.list_function_image{
+  padding-left : 13px;
+  padding-right : 13px;
+  margin-right : 10px;
+}
+
+.main_main{
+  background-color : #EEE;
+  border-radius:15px;
+  
+}
+.main_avator{
+  padding-top:10px;
+  text-align : center;
+  /*float: left;*/
+}
+.main_avator_img{
+  height : 85px; 
+  margin-left: 5px;
+  margin-top: 5px;
+  box-shadow: 3px 3px 7px #777;
+  border: 2px solid #000;
+}
+.main_menu{
+  height : 80px;  
+  text-align : center;
+}
+.main_user_detail{
+  padding-top:5px;
+}
+.main_user_name{  
+  font-size : 28px;
+}
+.main_function{
+  margin-top:10px;
+  margin-bottom:5px;
+}
+.main_function_image{
+  padding-left : 13px;
+  padding-right : 13px;
+  margin-reft : 10px;
+  margin-right : 10px;
+}
+
+.d_day_main{
+  padding:10px;
+  background-color : #EEE;
+  border-radius:15px; 
+}
+.d_day_table{
+  
+}
+.d_day_thead{   
+  
+}
+.d_day_tbody{   
+  text-align:center;
+}
+
